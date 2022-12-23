@@ -5,12 +5,12 @@ const Home = () => {
   const categories = [
     {
       id: 1,
-      title: "Tops",
+      title: "Hats",
       imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
     },
     {
       id: 2,
-      title: "Bottoms",
+      title: "Jackets",
       imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
     },
     {
