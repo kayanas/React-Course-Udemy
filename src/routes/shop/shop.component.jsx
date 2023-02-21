@@ -7,10 +7,10 @@ import "./shop.style.scss";
 
 const Shop = () => {
   return (
-    <Routes>
-      <Route index element={ <CategoriesPrieview />} />
-      <Route path=":category" element={ <Category />} />
-    </Routes>
+      <Routes>
+        <Route index element={<CategoriesPrieview />} />
+        <Route path=":category" element={<Category />} />
+      </Routes>
   );
 };
 export default Shop;

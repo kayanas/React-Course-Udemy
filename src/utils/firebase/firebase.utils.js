@@ -39,8 +39,10 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
+
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
+  
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
@@ -57,6 +59,7 @@ export const addCollectionAndDocuments = async (
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
+
   await batch.commit();
   console.log("done");
 };
@@ -70,7 +73,7 @@ export const getCategoriesAndDocuments = async () => {
     const { title, items} = docSnapshot.data();
     acc[title.toLowerCase()] = items;
     return acc;
-  }, {})
+  }, {});
 
   return categoryMap;
 };
@@ -80,6 +83,7 @@ export const createUserDocumentFromAuth = async (
   additionalInformation = {}
 ) => {
   if (!userAuth) return;
+
   const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
@@ -102,11 +106,12 @@ export const createUserDocumentFromAuth = async (
   return userDocRef;
 };
 
-export const createAuthWithEmailAndPassword = async (email, password) => {
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
 };
+
 export const signInAuthWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 

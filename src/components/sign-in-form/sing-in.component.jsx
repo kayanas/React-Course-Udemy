@@ -6,14 +6,15 @@ import "./sign-in-form.style.scss";
 
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
+
 
 const defaultFormFields = {
   email: "",
   password: "",
 };
+
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -31,19 +32,10 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const {user} = await signInAuthWithEmailAndPassword(email, password);
+      await signInAuthWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect password for Email!");
-          break;
-        case "auth/user-not-found":
-          alert("No user found???");
-          break;
-        default:
-          console.log(error);
-      }
+      console.log('User sign in failed', error);
     }
   };
 
@@ -52,8 +44,9 @@ const SignInForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
+
   return (
-    <div className="sign-up-container">
+    <div className="sign-in-container">
       <h2>Already Have An Account?</h2>
       <span>SIGN IN with EMAIL and PASS</span>
       <form onSubmit={handleSubmit}>
