@@ -9,12 +9,10 @@ import {
   signInAuthWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
-
 const defaultFormFields = {
   email: "",
   password: "",
 };
-
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -25,7 +23,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-  await signInWithGooglePopup();
+    await signInWithGooglePopup();
   };
 
   const handleSubmit = async (event) => {
@@ -35,7 +33,7 @@ const SignInForm = () => {
       await signInAuthWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
-      console.log('User sign in failed', error);
+      console.log("User sign in failed", error);
     }
   };
 
@@ -43,7 +41,6 @@ const SignInForm = () => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
-
 
   return (
     <div className="sign-in-container">
